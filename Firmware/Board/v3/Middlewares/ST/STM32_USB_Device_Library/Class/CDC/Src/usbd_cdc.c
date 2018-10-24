@@ -58,7 +58,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "usbd_cdc.h"
 #include "usbd_ctlreq.h"
-
+#include <cmsis_os.h>
+#include <freertos_vars.h>
 
 /** @addtogroup STM32_USB_DEVICE_LIBRARY
   * @{
@@ -681,18 +682,9 @@ static uint8_t  USBD_CDC_DataIn (USBD_HandleTypeDef *pdev, uint8_t epnum)
 
   if(pdev->pClassData != NULL)
   {
-    if((pdev->ep_in[epnum].total_length > 0U) && ((pdev->ep_in[epnum].total_length % hpcd->IN_ep[epnum].maxpacket) == 0U))
-    {
-      /* Update the packet total length */
-      pdev->ep_in[epnum].total_length = 0U;
-
-      /* Send ZLP */
-      USBD_LL_Transmit (pdev, epnum, NULL, 0U);
-    }
-    else
-    {
-      hcdc->TxState = 0U;
-    }
+    
+    hcdc->TxState = 0;
+    osSemaphoreRelease(sem_usb_tx);
     return USBD_OK;
   }
   else
