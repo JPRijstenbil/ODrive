@@ -53,9 +53,14 @@
 #define USBD_MAX_NUM_CONFIGURATION                      1U
 #endif /* USBD_MAX_NUM_CONFIGURATION */
 
-#ifndef USBD_LPM_ENABLED
-#define USBD_LPM_ENABLED                                0U
-#endif /* USBD_LPM_ENABLED */
+#define  USBD_IDX_LANGID_STR                            0x00 
+#define  USBD_IDX_MFC_STR                               0x01 
+#define  USBD_IDX_PRODUCT_STR                           0x02
+#define  USBD_IDX_SERIAL_STR                            0x03 
+#define  USBD_IDX_CONFIG_STR                            0x04 
+#define  USBD_IDX_INTERFACE_STR                         0x05
+#define  USBD_IDX_ODRIVE_INTF_STR                       0x06
+#define  USBD_IDX_MICROSOFT_DESC_STR                    0xEE
 
 #ifndef USBD_SELF_POWERED
 #define USBD_SELF_POWERED                               1U
