@@ -419,6 +419,29 @@ bool Controller::update() {
         return false;
     }
 
+    // Backlash elimination
+    // This section is intended to enable position control on two motors that drive one shaft.
+    // the clamp_torque is a way to eliminate the backlash i.e. it lets the motors clamp the gear with a constant torque.
+    // the result of this is that sometimes motor 0 and sometimes motor 1 is the driving motor. But at all times the torque on 
+    // one motor is negative, and on motor 1 is positive.
+    float clamp_torque = 0.3f;
+    if (axis_->config_.motor_side == 1){
+        if(torque <= 0.0f){
+            torque = clamp_torque;
+        }
+        else{
+            torque += clamp_torque;
+        }
+    }
+    else if (axis_->config_.motor_side == 0){
+        if(torque <= 0.0f){
+            torque -= clamp_torque;
+        }
+        else{
+            torque = -clamp_torque;
+        }
+    }
+
     torque_output_ = torque;
 
     // TODO: this is inconsistent with the other errors which are sticky.
