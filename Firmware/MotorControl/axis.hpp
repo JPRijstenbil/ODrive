@@ -79,6 +79,7 @@ public:
         bool enable_watchdog = false;
 
         uint16_t motor_side = 0; // 0 is left motor, 1 is right motor
+        float clamp_torque = 0; 
 
         // Defaults loaded from hw_config in load_configuration in main.cpp
         uint16_t step_gpio_pin = 0;

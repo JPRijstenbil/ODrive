@@ -527,6 +527,7 @@ interfaces:
             unit: s
           enable_watchdog: bool
           motor_side: uint16
+          clamp_torque: float32
           step_gpio_pin: {type: uint16, c_setter: 'set_step_gpio_pin'}
           dir_gpio_pin: {type: uint16, c_setter: 'set_dir_gpio_pin'}
           calibration_lockin: # TODO: this is a subset of lockin state

@@ -424,7 +424,7 @@ bool Controller::update() {
     // the clamp_torque is a way to eliminate the backlash i.e. it lets the motors clamp the gear with a constant torque.
     // the result of this is that sometimes motor 0 and sometimes motor 1 is the driving motor. But at all times the torque on 
     // one motor is negative, and on motor 1 is positive.
-    float clamp_torque = 0.3f;
+    float clamp_torque = axis_->config_.clamp_torque;
     if (axis_->config_.motor_side == 1){
         if(torque <= 0.0f){
             torque = clamp_torque;
