@@ -140,8 +140,6 @@ void Error_Handler(void);
 #define M0_BH_GPIO_Port GPIOA
 #define M0_CH_Pin GPIO_PIN_10
 #define M0_CH_GPIO_Port GPIOA
-#define GPIO_7_Pin GPIO_PIN_15
-#define GPIO_7_GPIO_Port GPIOA
 #define nFAULT_Pin GPIO_PIN_2
 #define nFAULT_GPIO_Port GPIOD
 #define GPIO_8_Pin GPIO_PIN_3
